@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Phone Charge-Alarm</string>
+    <string name="desc1">The Alarm Will Go Off As Soon As The AC Cable Disconnects!</string>
+    <string name="desc2">You Can Now Switch The Screen Off, But Do Not Quit The App!</string>
+    <string name="desc3">Make Sure Your Media Sound Is On!</string>
+    <string name="start_alarm">Start Alarm!</string>
+    <string name="stop_alarm">Stop Alarm!</string>
+    <string name="battery_state">Battery State</string>
+    <string name="battery_alarm">When Alarm Goes Off</string>
+    <string name="battery_charge">When Battery Is Charging</string>
+</resources>

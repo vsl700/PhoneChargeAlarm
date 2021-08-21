@@ -55,17 +55,27 @@ public class MainActivity extends AppCompatActivity {
         //mediaPlayer.setVolume(15, 15);
 
         audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        prevVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        prevVolume = getVolume();
 
-        for(int i = prevVolume; i < 15; i++)
+        for(int i = prevVolume; i < 10; i++)
             audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
 
     }
 
+    private int getVolume(){
+        return audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+    }
+
     @Override
     protected void onDestroy() {
-        for(int i = prevVolume; i < 15; i++)
-            audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+        int currentVolume = getVolume();
+        if(prevVolume < currentVolume) {
+            for (int i = prevVolume; i < currentVolume; i++)
+                audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_PLAY_SOUND);
+        }else{
+            for (int i = currentVolume; i < prevVolume; i++)
+                audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_PLAY_SOUND);
+        }
 
         mediaPlayer.release();
         mediaPlayer = null;
